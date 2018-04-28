@@ -1,18 +1,17 @@
 {% extends "OCPlatformBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une annonce - {{ parent() }}
+  Ajouter une annonce - {{ parent() }}
 {% endblock %}
 
 {% block ocplatform_body %}
 
-  <h2>Modifier une annonce</h2>
+  <h2>Ajouter une annonce</h2>
 
   {{ include("OCPlatformBundle:Advert:form.html.twig") }}
 
   <p>
-    {% set text = "Vous éditez une annonce déjà existante, merci de ne pas changer l'esprit général de l'annonce déjà publiée." %}
-    {{ text | raw | convert_encoding('UTF-8', 'ISO-8859-1') }}
+    Vous ajouter une annonce
   </p>
 
   <p>
