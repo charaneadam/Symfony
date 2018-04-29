@@ -55,6 +55,11 @@ class AdvertController extends Controller
     }
     
     public function addAction(Request $request){
+        $antispam = $this->container->get('oc_platform.antispam');
+        $text = "...";
+        if($antispam->isSpam($text)){
+            throw new \Exception("Votre message a ete detecte comme spam");
+        }
         if($request->isMethod('POST')){
             $request->getSession()->getFlashBag('notice', 'Annonce bien enregistrée.');
             return $this->redirectToRoute('oc_platform_view', array('id' => 5));
