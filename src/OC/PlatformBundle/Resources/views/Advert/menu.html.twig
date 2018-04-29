@@ -1,9 +1,9 @@
 <ul class="nav nav-pills nav-stacked">
-  {% for advert in listAdverts %}
-    <li>
-      <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
-        {{ advert.title | raw | convert_encoding('UTF-8', 'ISO-8859-1') }}
-      </a>
-    </li>
-  {% endfor %}
+    {% for advert in listAdverts %}
+        <li>
+            <a href="{{ path('oc_platform_view', {'id': advert.id}) }}">
+                {{ advert.title }}
+            </a>
+        </li>
+    {% endfor %}
 </ul>

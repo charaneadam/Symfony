@@ -1,25 +1,25 @@
 {% extends "OCPlatformBundle::layout.html.twig" %}
 
 {% block title %}
-  Modifier une annonce - {{ parent() }}
+    Modifier une annonce - {{ parent() }}
 {% endblock %}
 
 {% block ocplatform_body %}
-
-  <h2>Modifier une annonce</h2>
-
-  {{ include("OCPlatformBundle:Advert:form.html.twig") }}
-
-  <p>
-    {% set text = "Vous Èditez une annonce dÈj‡ existante, merci de ne pas changer l'esprit gÈnÈral de l'annonce dÈj‡ publiÈe." %}
-    {{ text | raw | convert_encoding('UTF-8', 'ISO-8859-1') }}
-  </p>
-
-  <p>
-    <a href="{{ path('oc_platform_view', {'id': advert.id}) }}" class="btn btn-default">
-      <i class="glyphicon glyphicon-chevron-left"></i>
-      Retour ‡ l'annonce
-    </a>
-  </p>
-
+    
+    <h2>Modifier une annonce</h2>
+    
+    {{ include("OCPlatformBundle:Advert:form.html.twig") }}
+    
+    <p>
+        Vous √©ditez une annonce d√©j√† existante, merci de ne pas changer
+        l'esprit g√©n√©ral de l'annonce d√©j√† publi√©e.
+    </p>
+    
+    <p>
+        <a href="{{ path('oc_platform_view', {'id': advert.id}) }}" class="btn btn-default">
+            <i class="glyphicon glyphicon-chevron-left"></i>
+            Retour √† l'annonce
+        </a>
+    </p>
+    
 {% endblock %}

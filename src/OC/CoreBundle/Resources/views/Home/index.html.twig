@@ -1,12 +1,18 @@
-{% extends "OCPlatformBundle::layout.html.twig" %}
+{% extends "OCCoreBundle::layout.html.twig" %}
 
 {% block title %}
     Accueil - {{ parent() }}
 {% endblock %}
 
-{% block ocplatform_body %}
+{% block body %}
     
-    <h2>Liste des annonces</h2>
+    {% for message in app.session.flashbag.get('info') %}
+        <div class="alert alert-info" role="alert">
+            Message flash : {{ message }}
+        </div>
+    {% endfor %}
+      
+    <h1>Les 3 dernières annonces</h1>
     
     <ul>
         {% for advert in listAdverts %}
