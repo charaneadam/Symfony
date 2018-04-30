@@ -112,6 +112,23 @@ class AdvertController extends Controller
     
     public function editAction($id, Request $request)
     {
+
+        $em = $this->getDoctrine()->getManager();
+
+        $advert = $em->getRepository('OCPlatformBundle:Advert')->find($id);
+
+        if($advert == null){
+            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
+
+        $listCategories = $em->getRepository('OCPlatformBundle:Category')->findAll();
+
+        foreach ($listCategories as $category) {
+            $advert->addCategory($category);
+        }
+
+        $em->flush();
+
         if($request->isMethod('POST')) {
             $request->getSession()->getFlashBag()->add('notice', 'Annonce bien modifiée.');
             
@@ -133,6 +150,27 @@ class AdvertController extends Controller
     
     public function deleteAction($id)
     {
+
+        $em = $this->getDoctrine()->getManager();
+
+        // On récupère l'annonce $id
+        $advert = $em->getRepository('OCPlatformBundle:Advert')->find($id);
+
+        if (null === $advert) {
+            throw new NotFoundHttpException("L'annonce d'id ".$id." n'existe pas.");
+        }
+
+        // On boucle sur les catégories de l'annonce pour les supprimer
+        foreach ($advert->getCategories() as $category) {
+            $advert->removeCategory($category);
+        }
+
+        // Pour persister le changement dans la relation, il faut persister l'entité propriétaire
+        // Ici, Advert est le propriétaire, donc inutile de la persister car on l'a récupérée depuis Doctrine
+
+        // On déclenche la modification
+        $em->flush();
+
         return $this->render('OCPlatformBundle:Advert:delete.html.twig');
     }
 }
