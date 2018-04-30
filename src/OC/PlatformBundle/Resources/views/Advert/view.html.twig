@@ -19,6 +19,19 @@
     </div>
 
     <div>
+        {% if listAdvertSkills|length > 0 %}
+            <div>
+                Cette annonce requiert les compétences suivantes :
+                <ul>
+                    {% for advertSkill in listAdvertSkills %}
+                        <li>{{ advertSkill.skill.name }} : niveau {{ advertSkill.level }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+
+    <div>
         {% if not advert.categories.empty %}
             <p>
                 Cette annonce est parue dans les catégories suivantes :
